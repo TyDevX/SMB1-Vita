@@ -26,8 +26,6 @@ set(VITA_TITLEID  "SMB1V0000")
 # Optional version string to show in LiveArea's more info screen
 set(VITA_VERSION  "01.00")
 
-add_subdirectory(codegen)
-
 ## Flags and includes for building
 # Note that we make sure not to overwrite previous flags
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -O3 -fsigned-char -fno-lto")
