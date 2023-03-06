@@ -28,11 +28,11 @@ jobs:
       - name: Build SMB1-Vita
         run: |
           cd SMB1.vita
-          cmake .
+          cmake ..
           make
       - name: Upload VPK
         uses: actions/upload-artifact@v2
         with:
           name: v4-vita
-          path: SMB1.vita/RSDKv4.vpk
+          path: SMB1.vita/SMB1Vita.vpk
           if-no-files-found: error

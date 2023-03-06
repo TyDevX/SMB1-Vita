@@ -53,7 +53,7 @@ set(SOURCE_FILES
 add_executable(smbc ${SOURCE_FILES})
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(smbc
   SDL2
   vita2d
   vorbisfile
