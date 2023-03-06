@@ -50,6 +50,8 @@ set(SOURCE_FILES
     source/SMB/SMBEngine.cpp
     source/Util/Video.cpp)
 
+add_executable(smbc ${SOURCE_FILES})
+
 # Library to link to (drop the -l prefix). This will mostly be stubs.
 target_link_libraries(${PROJECT_NAME}
   SDL2
@@ -74,11 +76,6 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 include_directories(${Boost_INCLUDE_DIRS})
-
-add_executable(smbc ${SOURCE_FILES})
-target_link_libraries(smbc ${SDL2_LIBRARY} ${SDL2_LIBRARIES})
-
-add_dependencies(smbc codegen)
 
 ## Create Vita files
 vita_create_self(${PROJECT_NAME}.self ${PROJECT_NAME})
