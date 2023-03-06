@@ -8,6 +8,8 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
   endif()
 endif()
 
+find_package(SDL2 REQUIRED)
+
 project(SMB1V CXX)
 include("${VITASDK}/share/vita.cmake" REQUIRED)
 set(VITA_APP_NAME "Super Mario Bros NES")
@@ -35,7 +37,7 @@ target_link_libraries(SMB1V
   -Wl,--whole-archive pthread -Wl,--no-whole-archive
   stdc++
   openal
-  SDL2
+  SDL2::SDL2
   vitaGL
   vitashark
   SceShaccCgExt
