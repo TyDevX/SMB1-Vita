@@ -31,8 +31,6 @@ add_executable(SMB1V
     source/Util/Video.cpp
 )
 
-add_dependencies(SMB1V companion.bin)
-
 target_link_libraries(SMB1V
   -Wl,--whole-archive pthread -Wl,--no-whole-archive
   stdc++
@@ -76,6 +74,5 @@ vita_create_vpk(SMB1Vita.vpk ${VITA_TITLEID} eboot.bin
 
 add_custom_target(copy
   COMMAND cp eboot.bin D:/app/${VITA_TITLEID}/eboot.bin
-  COMMAND cp companion.bin D:/app/${VITA_TITLEID}/companion.bin
   DEPENDS eboot.bin
 )
