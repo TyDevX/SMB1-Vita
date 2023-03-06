@@ -28,7 +28,7 @@ jobs:
       - name: Build SMB1-Vita
         run: |
           cd SMB1.vita
-          cmake ..
+          cmake .
           make
       - name: Upload VPK
         uses: actions/upload-artifact@v2
