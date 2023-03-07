@@ -27,12 +27,10 @@ jobs:
           sudo apt-get install make git-core cmake python build-essential libsdl2-dev libboost-all-dev flex bison -y
       - name: Build SMB1-Vita
         run: |
-          cd SMB1.vita
-          cmake .
-          make
+          mkdir build && cd build && cmake .. && make
       - name: Upload VPK
         uses: actions/upload-artifact@v2
         with:
           name: smb1-vita
-          path: SMB1.vita/SMB1Vita.vpk
+          path: build/SMB1Vita.vpk
           if-no-files-found: error

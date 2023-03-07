@@ -36,6 +36,7 @@ set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 # Add any additional include paths here
 include_directories(
   /home/user/vitasdk/arm-vita-eabi/include
+  link_directories(/mingw64/include/GL)
 )
 
 set(SOURCE_FILES
@@ -50,28 +51,49 @@ set(SOURCE_FILES
     source/SMB/SMBEngine.cpp
     source/Util/Video.cpp)
 
-add_executable(smbc ${SOURCE_FILES})
+add_executable(smbc 
+  source/Configuration.cpp
+  source/Main.cpp
+  source/Emulation/APU.cpp
+  source/Emulation/Controller.cpp
+  source/Emulation/MemoryAccess.cpp
+  source/Emulation/PPU.cpp
+  source/SMB/SMB.cpp
+  source/SMB/SMBData.cpp
+  source/SMB/SMBEngine.cpp
+  source/Util/Video.cpp
+)
+
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
 target_link_libraries(smbc
   SDL2
   vita2d
-  vorbisfile
-  vorbis
-  ogg
-  glew
-  pthread
-  SceDisplay_stub
-  SceAudio_stub
-  SceCtrl_stub
-  SceSysmodule_stub
-  SceGxm_stub
-  SceCommonDialog_stub
+  openal
+  vitaGL
+  vitashark
+  SceShaccCgExt
+  m
+  mathneon
+  mpg123
+  taihen_stub
+  kubridge_stub
   SceAppMgr_stub
-  SceTouch_stub
-  SceHid_stub
+  SceAppUtil_stub
   SceAudio_stub
-  SceMotion_stub
+  SceAudioIn_stub
+  SceCtrl_stub
+  SceCommonDialog_stub
+  SceDisplay_stub
+  SceKernelDmacMgr_stub
+  SceFios2_stub
+  SceGxm_stub
+  SceLibcBridge_stub
+  SceShaccCg_stub
+  SceSysmodule_stub
+  ScePower_stub
+  SceTouch_stub
+  SceVshBridge_stub
   m
 )
 
