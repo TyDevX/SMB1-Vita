@@ -25,9 +25,11 @@ make
 
 # SMB1-Vita Creds
 
-* [SnesFX](https://twitter.com/snesfx) - The silly little native port
+* [SnesFX](https://twitter.com/snesfx) - The silly little native vita port
 
-* [MitchellSternke](https://github.com/MitchellSternke/SuperMarioBros-C) - The original C/C++ port of SMB1
+# SMB1 C/C++ Port Creds
+
+* [MitchellSternke](https://github.com/MitchellSternke/SuperMarioBros-C) - The C/C++ port of SMB1
 
 Original SuperMarioBros-C Readme:
 ================
