@@ -28,7 +28,7 @@ make
 
 * [MitchellSternke](https://github.com/MitchellSternke/SuperMarioBros-C) - The original C/C++ port of SMB1
 
-SuperMarioBros-C
+Original SuperMarioBros-C Readme:
 ================
 
 An attempt to translate the original Super Mario Bros. for the NES to readable C/C++.
