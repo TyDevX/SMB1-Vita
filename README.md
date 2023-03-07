@@ -1,6 +1,6 @@
 # SMB1-Vita
 
-* A w.i.p. native por of SMB1 to the Playstation Vita.
+* A w.i.p. native port of SMB1 to the Playstation Vita.
 
 
 # Requirements
