@@ -73,7 +73,6 @@ target_link_libraries(smbc
   vitaGL
   vitashark
   SceShaccCgExt
-  m
   mathneon
   mpg123
   taihen_stub
