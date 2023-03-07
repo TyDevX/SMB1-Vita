@@ -1,3 +1,33 @@
+# SMB1-Vita
+
+* A w.i.p. native por of SMB1 to the Playstation Vita.
+
+
+# Requirements
+* [VitaSDK](https://vitasdk.org/)
+* [openal-soft](https://github.com/isage/openal-soft/tree/vita-1.19.1)
+* [libmathneon](https://github.com/Rinnegatamante/math-neon)
+* [vitaShaRK](https://github.com/Rinnegatamante/vitaShaRK)
+* [imgui-vita](https://github.com/Rinnegatamante/imgui-vita)
+* [kubridge](https://github.com/TheOfficialFloW/kubridge)
+
+As last requirement, you'll need to compile [vitaGL](https://github.com/Rinnegatamante/vitaGL) with `make HAVE_SBRK=1 HAVE_SHARK=1 SOFTFP_ABI=1 SHARED_RENDERTARGETS=1 NO_DEBUG=1 install`.  
+After all these requirements are met, you can compile the loader with the following commands:
+
+# How 2 Build
+
+```
+mkdir build && cd build
+cmake -G "Unix Makefiles" ..
+make
+```
+
+# SMB1-Vita Creds
+
+* [SnesFX](https://twitter.com/snesfx) - The silly little native port
+
+* [MitchellSternke](https://github.com/MitchellSternke/SuperMarioBros-C) - The original C/C++ port of SMB1
+
 SuperMarioBros-C
 ================
 
