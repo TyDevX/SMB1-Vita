@@ -13,8 +13,6 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 endif()
 
 project(smbc)
-# This line adds Vita helper macros, must go after project definition in order
-# to build Vita specific artifacts (self/vpk).
 include("${VITASDK}/share/vita.cmake" REQUIRED)
 
 ## Configuration options for this app
@@ -26,44 +24,31 @@ set(VITA_TITLEID  "SMB1V0000")
 # Optional version string to show in LiveArea's more info screen
 set(VITA_VERSION  "01.00")
 
-## Flags and includes for building
-# Note that we make sure not to overwrite previous flags
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -O3 -fsigned-char -fno-lto")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-c++11-narrowing")
-# Optional. You can specify more param.sfo flags this way.
+# Compiler flags
+set(CMAKE_CXX_FLAGS "-std=c++11 -Wno-c++11-narrowing")
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 
-# Add any additional include paths here
 include_directories(
   /home/user/vitasdk/arm-vita-eabi/include
-  link_directories(/mingw64/include/GL)
 )
 
+# Directories
+set(SRC_DIR "source")
+set(CODEGEN_DIR "codegen")
+
+# Source files
 set(SOURCE_FILES
-    source/Configuration.cpp
-    source/Main.cpp
-    source/Emulation/APU.cpp
-    source/Emulation/Controller.cpp
-    source/Emulation/MemoryAccess.cpp
-    source/Emulation/PPU.cpp
-    source/SMB/SMB.cpp
-    source/SMB/SMBData.cpp
-    source/SMB/SMBEngine.cpp
-    source/Util/Video.cpp)
-
-add_executable(smbc 
-  source/Configuration.cpp
-  source/Main.cpp
-  source/Emulation/APU.cpp
-  source/Emulation/Controller.cpp
-  source/Emulation/MemoryAccess.cpp
-  source/Emulation/PPU.cpp
-  source/SMB/SMB.cpp
-  source/SMB/SMBData.cpp
-  source/SMB/SMBEngine.cpp
-  source/Util/Video.cpp
+    ${SRC_DIR}/Configuration.cpp
+    ${SRC_DIR}/Main.cpp
+    ${SRC_DIR}/Emulation/APU.cpp
+    ${SRC_DIR}/Emulation/Controller.cpp
+    ${SRC_DIR}/Emulation/MemoryAccess.cpp
+    ${SRC_DIR}/Emulation/PPU.cpp
+    ${SRC_DIR}/SMB/SMB.cpp
+    ${SRC_DIR}/SMB/SMBData.cpp
+    ${SRC_DIR}/SMB/SMBEngine.cpp
+    ${SRC_DIR}/Util/Video.cpp
 )
-
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
 target_link_libraries(smbc
@@ -96,7 +81,18 @@ target_link_libraries(smbc
   m
 )
 
-include_directories(${Boost_INCLUDE_DIRS})
+# Libraries
+set(LIBRARIES "-lSDL2")
+
+# Build targets
+add_executable(smbc ${SOURCE_FILES})
+target_link_libraries(smbc ${LIBRARIES})
+
+# Build code generation
+add_custom_target(code_generation ALL
+    COMMAND ${CMAKE_MAKE_PROGRAM}
+    WORKING_DIRECTORY ${CODEGEN_DIR}
+)
 
 ## Create Vita files
 vita_create_self(${PROJECT_NAME}.self ${PROJECT_NAME})
