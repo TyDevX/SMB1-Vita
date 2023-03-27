@@ -1,6 +1,6 @@
 # SMB1-Vita
 
-* A w.i.p. native port of SMB1 to the Playstation Vita.
+* A work in progress native port of SMB1 to the Playstation Vita.
 
 
 # Requirements
@@ -10,7 +10,7 @@
 * [vitaShaRK](https://github.com/Rinnegatamante/vitaShaRK)
 * [imgui-vita](https://github.com/Rinnegatamante/imgui-vita)
 * [kubridge](https://github.com/TheOfficialFloW/kubridge)
-* SDL2 (Most likely the vita version)
+* SDL2 (Vita Version)
 
 As last requirement, you'll need to compile [vitaGL](https://github.com/Rinnegatamante/vitaGL) with `make HAVE_SBRK=1 HAVE_SHARK=1 SOFTFP_ABI=1 SHARED_RENDERTARGETS=1 NO_DEBUG=1 install`.  
 After all these requirements are met, you can compile the loader with the following commands:
@@ -18,8 +18,9 @@ After all these requirements are met, you can compile the loader with the follow
 # How 2 Build
 
 ```
-mkdir build && cd build
-cmake -G "Unix Makefiles" ..
+mkdir build
+cd build
+cmake ..
 make
 ```
 
@@ -29,7 +30,7 @@ make
 
 # SMB1 C/C++ Port Creds
 
-* [MitchellSternke](https://github.com/MitchellSternke/SuperMarioBros-C) - The C/C++ port of SMB1
+* [MitchellSternke](https://github.com/MitchellSternke) - The C/C++ port of SMB1
 
 Original SuperMarioBros-C Readme:
 ================

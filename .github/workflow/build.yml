@@ -27,7 +27,11 @@ jobs:
           sudo apt-get install make git-core cmake python build-essential libsdl2-dev libboost-all-dev flex bison -y
       - name: Build SMB1-Vita
         run: |
-          mkdir build && cd build && cmake .. && make
+          mkdir build
+          cd build
+          cmake ..
+          make
+
       - name: Upload VPK
         uses: actions/upload-artifact@v2
         with:
