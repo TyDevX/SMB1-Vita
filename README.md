@@ -18,6 +18,7 @@ After all these requirements are met, you can compile the loader with the follow
 # How 2 Build
 
 ```
+cd SMB1.vita
 mkdir build
 cd build
 cmake ..
