@@ -1,0 +1,6 @@
+/home/james/SMB1-vita/SMB1.vita/CMakeFiles/SMB1.dir
+/home/james/SMB1-vita/SMB1.vita/CMakeFiles/SMB1-velf.dir
+/home/james/SMB1-vita/SMB1.vita/CMakeFiles/SMB1.self-self.dir
+/home/james/SMB1-vita/SMB1.vita/CMakeFiles/SMB1.vpk-vpk.dir
+/home/james/SMB1-vita/SMB1.vita/CMakeFiles/edit_cache.dir
+/home/james/SMB1-vita/SMB1.vita/CMakeFiles/rebuild_cache.dir

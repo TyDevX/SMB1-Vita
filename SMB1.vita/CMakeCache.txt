@@ -150,7 +150,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=smbc
+CMAKE_PROJECT_NAME:STATIC=SMB1
 
 //ranlib
 CMAKE_RANLIB:PATH=/usr/local/vitasdk/bin/arm-vita-eabi-ranlib
@@ -216,11 +216,23 @@ CMAKE_TOOLCHAIN_FILE:FILEPATH=/usr/local/vitasdk/share/vita.toolchain.cmake
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Value Computed by CMake
+SMB1_BINARY_DIR:STATIC=/home/james/SMB1-vita/SMB1.vita
+
+//Value Computed by CMake
+SMB1_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+SMB1_SOURCE_DIR:STATIC=/home/james/SMB1-vita/SMB1.vita
+
 //Path to Vita SDK root
 VITASDK:PATH=/usr/local/vitasdk
 
 //vita-elf-create
 VITA_ELF_CREATE:PATH=/usr/local/vitasdk/bin/vita-elf-create
+
+//vita-elf-create flags
+VITA_ELF_CREATE_FLAGS:STRING=
 
 //vita-elf-export
 VITA_ELF_EXPORT:PATH=/usr/local/vitasdk/bin/vita-elf-export
@@ -231,11 +243,20 @@ VITA_LIBS_GEN:PATH=/usr/local/vitasdk/bin/vita-libs-gen
 //vita-make-fself
 VITA_MAKE_FSELF:PATH=/usr/local/vitasdk/bin/vita-make-fself
 
+//vita-make-fself flags
+VITA_MAKE_FSELF_FLAGS:STRING=
+
 //vita-mksfoex
 VITA_MKSFOEX:PATH=/usr/local/vitasdk/bin/vita-mksfoex
 
+//vita-mksfoex flags
+VITA_MKSFOEX_FLAGS:STRING= -d PARENTAL_LEVEL=1
+
 //vita-pack-vpk
 VITA_PACK_VPK:PATH=/usr/local/vitasdk/bin/vita-pack-vpk
+
+//vita-pack-vpk flags
+VITA_PACK_VPK_FLAGS:STRING=
 
 //Value Computed by CMake
 smbc_BINARY_DIR:STATIC=/home/james/SMB1-vita/SMB1.vita

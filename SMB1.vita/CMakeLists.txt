@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.5)
+## This file is a quick tutorial on writing CMakeLists for targeting the Vita
+cmake_minimum_required(VERSION 2.8)
 
 ## This includes the Vita toolchain, must go before project definition
 # It is a convenience so you do not have to type
@@ -12,93 +13,80 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
   endif()
 endif()
 
-project(smbc)
+## Define project parameters here
+# Name of the project
+project(SMB1)
+# This line adds Vita helper macros, must go after project definition in order
+# to build Vita specific artifacts (self/vpk).
 include("${VITASDK}/share/vita.cmake" REQUIRED)
 
 ## Configuration options for this app
 # Display name (under bubble in LiveArea)
-set(VITA_APP_NAME "SMB1 Vita")
+set(VITA_APP_NAME "SMB1")
 # Unique ID must be exactly 9 characters. Recommended: XXXXYYYYY where X =
 # unique string of developer and Y = a unique number for this app
-set(VITA_TITLEID  "SMB1V0000")
+set(VITA_TITLEID  "SMBV10000")
 # Optional version string to show in LiveArea's more info screen
 set(VITA_VERSION  "01.00")
 
-# Compiler flags
-set(CMAKE_CXX_FLAGS "-std=c++11 -Wno-c++11-narrowing")
+## Flags and includes for building
+# Note that we make sure not to overwrite previous flags
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -O3 -fsigned-char -fno-lto")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -fsigned-char -fno-lto -fno-rtti -fno-exceptions")
+# Optional. You can specify more param.sfo flags this way.
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 
+# Add any additional include paths here
 include_directories(
   /home/user/vitasdk/arm-vita-eabi/include
 )
 
-# Directories
-set(SRC_DIR "source")
-set(CODEGEN_DIR "codegen")
+# Add any additional library paths here
+# ${CMAKE_CURRENT_BINARY_DIR} lets you use any library currently being built
+link_directories(
+  ${CMAKE_CURRENT_BINARY_DIR}
+)
 
-# Source files
-set(SOURCE_FILES
-    ${SRC_DIR}/Configuration.cpp
-    ${SRC_DIR}/Main.cpp
-    ${SRC_DIR}/Emulation/APU.cpp
-    ${SRC_DIR}/Emulation/Controller.cpp
-    ${SRC_DIR}/Emulation/MemoryAccess.cpp
-    ${SRC_DIR}/Emulation/PPU.cpp
-    ${SRC_DIR}/SMB/SMB.cpp
-    ${SRC_DIR}/SMB/SMBData.cpp
-    ${SRC_DIR}/SMB/SMBEngine.cpp
-    ${SRC_DIR}/Util/Video.cpp
+## Build and link
+# Add all the files needed to compile here
+add_executable(${PROJECT_NAME}
+  ../source/Configuration.cpp
+  ../source/Main.cpp
+  ../source/Emulation/APU.cpp
+  ../source/Emulation/Controller.cpp
+  ../source/Emulation/MemoryAccess.cpp
+  ../source/Emulation/PPU.cpp
+  ../source/SMB/SMB.cpp
+  ../source/SMB/SMBData.cpp
+  ../source/SMB/SMBEngine.cpp
+  ../source/Util/Video.cpp
 )
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
-target_link_libraries(smbc
+target_link_libraries(${PROJECT_NAME}
   SDL2
+  Boost
   vita2d
-  openal
-  vitaGL
-  vitashark
-  SceShaccCgExt
-  mathneon
-  mpg123
-  taihen_stub
-  kubridge_stub
-  SceAppMgr_stub
-  SceAppUtil_stub
-  SceAudio_stub
-  SceAudioIn_stub
-  SceCtrl_stub
-  SceCommonDialog_stub
+  pthread
   SceDisplay_stub
-  SceKernelDmacMgr_stub
-  SceFios2_stub
-  SceGxm_stub
-  SceLibcBridge_stub
-  SceShaccCg_stub
+  SceAudio_stub
+  SceCtrl_stub
   SceSysmodule_stub
-  ScePower_stub
+  SceGxm_stub
+  SceCommonDialog_stub
+  SceAppMgr_stub
   SceTouch_stub
-  SceVshBridge_stub
+  SceHid_stub
+  SceAudio_stub
+  SceMotion_stub
   m
-)
-
-# Libraries
-set(LIBRARIES "-lSDL2")
-
-# Build targets
-add_executable(smbc ${SOURCE_FILES})
-target_link_libraries(smbc ${LIBRARIES})
-
-# Build code generation
-add_custom_target(code_generation ALL
-    COMMAND ${CMAKE_MAKE_PROGRAM}
-    WORKING_DIRECTORY ${CODEGEN_DIR}
 )
 
 ## Create Vita files
 vita_create_self(${PROJECT_NAME}.self ${PROJECT_NAME})
 # The FILE directive lets you add additional files to the VPK, the syntax is
 # FILE src_path dst_path_in_vpk. In this case, we add the LiveArea paths.
-vita_create_vpk(SMB1Vita.vpk ${VITA_TITLEID} eboot.bin
+vita_create_vpk(${PROJECT_NAME}.vpk ${VITA_TITLEID} ${PROJECT_NAME}.self
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
   FILE sce_sys/icon0.png sce_sys/icon0.png
